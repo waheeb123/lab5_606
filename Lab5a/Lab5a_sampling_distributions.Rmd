@@ -2,7 +2,6 @@
 title: "Foundations for statistical inference - Sampling distributions"
 author: "Waheeb Algabri"
 output:
-  pdf_document: default
   html_document:
     includes:
       in_header: header.html
@@ -11,6 +10,7 @@ output:
     theme: cerulean
     toc: true
     toc_float: true
+  pdf_document: default
 editor_options: 
   chunk_output_type: console
 ---
@@ -211,6 +211,20 @@ There are 15,000 elements in sample_props50, which is the result of taking 15,00
 
 The sampling distribution is centered around the true population proportion of people who do not believe that the work scientists do benefits them, which is 0.24. The histogram shows that the distribution is approximately normal, with a slight skewness to the right. This shape is expected, as the sample size is relatively small (n=50). As the sample size increases, the sampling distribution tends to become more symmetric and bell-shaped.
 
+```{r}
+center <- mean(sample_props50$p_hat)
+```
+
+
+```{r}
+ggplot(sample_props50, aes(x = p_hat)) +
+  geom_histogram(binwidth = 0.01, fill = "lightblue", color = "black") +
+  geom_vline(xintercept = center, linetype = "dashed", color = "red", size = 1) +
+  labs(title = "Distribution of Proportions",
+       x = "Proportion of Scientists Who Don't Benefit",
+       y = "Count")
+
+```
 
 
 ## Interlude: Sampling distributions
